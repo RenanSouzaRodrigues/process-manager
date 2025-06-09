@@ -18,8 +18,32 @@ public static class ProcessManager {
         Console.WriteLine("      Show the current application version");
         Console.WriteLine("  -s, --start <processName>");
         Console.WriteLine("      Start a process defined by name");
+        Console.WriteLine("  -r, --running <processName>");
+        Console.WriteLine("      Show if the process is currently running, and if is running, show its Process ID");
         Console.WriteLine("  -k, --kill <processName>");
         Console.WriteLine("      Kill a process defined by name");
+    }
+
+    public static void ProcessIsRunning(string processName) {
+        if (string.IsNullOrEmpty(processName)) {
+            Console.WriteLine("No Process Name provided. The process name is required in order to validate if it is running or not");
+            return;
+        }
+
+        try {
+            var processes = Process.GetProcesses();
+
+            foreach (var process in processes) {
+                if (process.ProcessName != processName) continue;
+                Console.WriteLine($"Process is Running with PID: {process.Id}");
+                return;
+            }
+
+            Console.WriteLine($"{processName} is not currently running.");
+        }
+        catch (Exception e) {
+            Console.WriteLine(e.Message);
+        }
     }
     
     public static void StartProcess(string processName) {

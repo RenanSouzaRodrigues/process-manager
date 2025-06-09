@@ -23,6 +23,7 @@ public static class Program {
             case "-h": case "--help": ProcessManager.ShowHelp(); break;
             case "-s": case "--start": ProcessManager.StartProcess(value); break;
             case "-k": case "--kill": ProcessManager.KillProcess(value); break;
+            case "-r": case "--running": ProcessManager.ProcessIsRunning(value); break;
             default: Console.WriteLine("Invalid command"); break;
         }
     }
