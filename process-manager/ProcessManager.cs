@@ -30,6 +30,12 @@ public static class ProcessManager {
             return;
         }
 
+        if (processName is "-h" or "--help") {
+            Console.WriteLine("  -r, --running <processName>");
+            Console.WriteLine("      Show if the process is currently running, and if is running, show its Process ID");
+            return;
+        }
+        
         try {
             var processes = Process.GetProcesses();
 
@@ -49,6 +55,12 @@ public static class ProcessManager {
     public static void StartProcess(string processName) {
         if (string.IsNullOrEmpty(processName)) {
             Console.WriteLine("No Process Name provided. The process name is required in order to start the process");
+            return;
+        }
+
+        if (processName is "-h" or "--help") {
+            Console.WriteLine("  -s, --start <processName>");
+            Console.WriteLine("      Start a process defined by name");
             return;
         }
         
@@ -71,6 +83,12 @@ public static class ProcessManager {
     public static void KillProcess(string processName) {
         if (string.IsNullOrEmpty(processName)) {
             Console.WriteLine("No Process Name provided. The process name is required in order to kill the process");
+            return;
+        }
+
+        if (processName is "-h" or "--help") {
+            Console.WriteLine("  -k, --kill <processName>");
+            Console.WriteLine("      Kill a process defined by name");
             return;
         }
         
